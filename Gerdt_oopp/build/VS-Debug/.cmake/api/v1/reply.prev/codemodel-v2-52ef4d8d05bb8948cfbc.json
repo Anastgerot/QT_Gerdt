@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-9842d782fe1fe4de999b.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Gerdt_oopp",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Gerdt_oopp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Gerdt_oopp-Debug-cd298416968e83cbceab.json",
+					"name" : "Gerdt_oopp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Gerdt_oopp_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Gerdt_oopp_autogen-Debug-a5ae454f77b720b4b999.json",
+					"name" : "Gerdt_oopp_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Gerdt_oopp_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Gerdt_oopp_autogen_timestamp_deps-Debug-ec3bac73270698c2b9e6.json",
+					"name" : "Gerdt_oopp_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Gerdt_oopp/build/VS-Debug",
+		"source" : "C:/Gerdt_oopp"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

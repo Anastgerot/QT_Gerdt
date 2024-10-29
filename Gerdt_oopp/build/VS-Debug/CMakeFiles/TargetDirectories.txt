@@ -1,0 +1,8 @@
+C:/Gerdt_oopp/build/VS-Debug/CMakeFiles/Gerdt_oopp.dir
+C:/Gerdt_oopp/build/VS-Debug/CMakeFiles/edit_cache.dir
+C:/Gerdt_oopp/build/VS-Debug/CMakeFiles/rebuild_cache.dir
+C:/Gerdt_oopp/build/VS-Debug/CMakeFiles/list_install_components.dir
+C:/Gerdt_oopp/build/VS-Debug/CMakeFiles/install.dir
+C:/Gerdt_oopp/build/VS-Debug/CMakeFiles/install/local.dir
+C:/Gerdt_oopp/build/VS-Debug/CMakeFiles/Gerdt_oopp_autogen_timestamp_deps.dir
+C:/Gerdt_oopp/build/VS-Debug/CMakeFiles/Gerdt_oopp_autogen.dir
