@@ -7,14 +7,14 @@ MyWidgetGerdt::MyWidgetGerdt(QWidget *parent) : QWidget{parent} {}
 
 void MyWidgetGerdt::load(const QString& path) {
     filmList.clear();
-    std::ifstream in(path.toStdWString(), std::ifstream::binary);
+    ifstream in(path.toStdWString(), ifstream::binary);
     if (in) {
         try {
             boost::archive::binary_iarchive ar(in);
             ar >> filmList;
             qDebug() << "Data loaded successfully, filmList size:" << filmList.size();
             update();
-        } catch (const std::exception &e) {
+        } catch (const exception &e) {
             qDebug() << "Error during deserialization:" << e.what();
         }
     } else {
@@ -34,7 +34,6 @@ void MyWidgetGerdt::paintEvent(QPaintEvent* event) {
     int x = 10, y = 10;
     int rowHeight = 30;
 
-    // Заголовки столбцов
     QStringList headers = {
         QString::fromUtf8("Название"),
         QString::fromUtf8("Год"),
@@ -47,13 +46,12 @@ void MyWidgetGerdt::paintEvent(QPaintEvent* event) {
     };
     int columnCount = headers.size();
 
-    // Подготовка контейнера для хранения данных и заголовков
     QVector<QStringList> tableData;
-    tableData.append(headers);  // Вставляем заголовки как первую строку
+    tableData.append(headers);
 
     if (!filmList.empty()) {
     // Заполняем таблицу данными из filmList с использованием for_each и bind
-    std::for_each(filmList.begin(), filmList.end(), std::bind([&](const auto& film) {
+    for_each(filmList.begin(), filmList.end(), bind([&](const auto& film) {
                       QStringList values;
                       if (auto animatedFilm = dynamic_cast<AnimatedFilm*>(film.get())) {
                           values << QString::fromLocal8Bit(animatedFilm->getTitle())
@@ -74,50 +72,46 @@ void MyWidgetGerdt::paintEvent(QPaintEvent* event) {
                           << "-" << "-";
                       }
                       tableData.append(values);
-                  }, std::placeholders::_1));
+                  }, placeholders::_1));
 
-    // Определение максимальной ширины для каждого столбца с использованием for_each и bind
     QVector<int> columnWidths(columnCount, 100);
     for (int i = 0; i < columnCount; ++i) {
-        std::for_each(tableData.begin(), tableData.end(), std::bind([&](const QStringList& row) {
-                          columnWidths[i] = std::max(columnWidths[i], painter.fontMetrics().horizontalAdvance(row[i]) + 20);
-                      }, std::placeholders::_1));
+       for_each(tableData.begin(), tableData.end(), bind([&](const QStringList& row) {
+                          columnWidths[i] = max(columnWidths[i], painter.fontMetrics().horizontalAdvance(row[i]) + 20);
+                      }, placeholders::_1));
     }
 
-    // Вычисляем общие ширину и высоту таблицы
-    int totalWidth = std::accumulate(columnWidths.begin(), columnWidths.end(), 0) + 20;
+    int totalWidth = accumulate(columnWidths.begin(), columnWidths.end(), 0) + 20;
     int totalHeight = tableData.size() * rowHeight + 20;
 
-    // Устанавливаем минимальные размеры виджета
     setMinimumSize(totalWidth, totalHeight);
     setGeometry(geometry().x(), geometry().y(), totalWidth, totalHeight);
 
-    // Отрисовываем заголовки и данные из tableData с использованием for_each и bind
-    std::for_each(tableData.begin(), tableData.end(), std::bind([&](const QStringList& row) {
-                      x = 10; // Сброс x для новой строки
+    for_each(tableData.begin(), tableData.end(), bind([&](const QStringList& row) {
+                      x = 10;
                       for (int i = 0; i < row.size(); ++i) {
                           QString text = row[i];
                           painter.drawText(x, y, columnWidths[i], rowHeight, Qt::AlignCenter, text);
                           x += columnWidths[i];
                       }
                       y += rowHeight;
-                  }, std::placeholders::_1));
+                  }, placeholders::_1));
 
-    // Рисуем горизонтальные линии сетки с использованием for_each и bind
-    int tableWidth = std::accumulate(columnWidths.begin(), columnWidths.end(), 0);
+
+    int tableWidth = accumulate(columnWidths.begin(), columnWidths.end(), 0);
     int rowIndex = 0;
-    std::for_each(tableData.begin(), tableData.end(), std::bind([&](const QStringList&) {
+    for_each(tableData.begin(), tableData.end(), bind([&](const QStringList&) {
                       painter.drawLine(10, 10 + rowIndex * rowHeight, 10 + tableWidth, 10 + rowIndex * rowHeight);
                       ++rowIndex;
-                  }, std::placeholders::_1));
+                  }, placeholders::_1));
     painter.drawLine(10, 10 + tableData.size() * rowHeight, 10 + tableWidth, 10 + tableData.size() * rowHeight);
 
     // Рисуем вертикальные линии сетки с использованием for_each и bind
     x = 10;
-    std::for_each(columnWidths.begin(), columnWidths.end(), std::bind([&](int width) {
+    for_each(columnWidths.begin(), columnWidths.end(), bind([&](int width) {
                       painter.drawLine(x, 10, x, y);
                       x += width;
-                  }, std::placeholders::_1));
-    painter.drawLine(x, 10, x, y); // Правая граница таблицы
+                  }, placeholders::_1));
+    painter.drawLine(x, 10, x, y);
 }
 }

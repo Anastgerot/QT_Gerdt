@@ -7,8 +7,8 @@ class AnimatedFilm : public films {
     friend class boost::serialization::access;
 
 protected:
-    std::string voice_actors = "";
-    std::string animation_style = "";
+    string voice_actors = "";
+    string animation_style = "";
 
 public:
     BOOST_SERIALIZATION_SPLIT_MEMBER()
@@ -32,6 +32,6 @@ public:
         ar & animation_style;
     }
 
-    std::string getVoiceActors() const { return voice_actors; }
-    std::string getAnimationStyle() const { return animation_style; }
+    string getVoiceActors() const { return voice_actors; }
+    string getAnimationStyle() const { return animation_style; }
 };

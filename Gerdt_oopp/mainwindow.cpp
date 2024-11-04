@@ -23,14 +23,12 @@ void MainWindow::on_actionClean_triggered() {
     fileName = "";
 }
 void MainWindow::on_actionSave_triggered() {
-    // Prompt the user to select a save location
     QString saveFileName = QFileDialog::getSaveFileName(this, tr("Save"), QDir::currentPath(), tr("File (*.dat)"));
 
     if (!saveFileName.isEmpty()) {
         qDebug() << "Saving file:" << saveFileName;
 
-        // Open the file for writing in binary mode
-        std::ofstream out(saveFileName.toStdString(), std::ofstream::binary);
+        ofstream out(saveFileName.toStdString(), ofstream::binary);
 
         if (out.is_open()) {
             boost::archive::binary_oarchive ar(out);
