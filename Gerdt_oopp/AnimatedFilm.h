@@ -14,10 +14,6 @@ public:
     BOOST_SERIALIZATION_SPLIT_MEMBER()
     virtual ~AnimatedFilm() = default;
 
-    void draw(QPainter &painter, int x, int y, const QVector<int>& columnWidth) const override;
-
-    QSize textBlockSize(QPainter &painter) const override;
-
     template<class Archive>
     void save(Archive& ar, const unsigned int version) const {
         ar & boost::serialization::base_object<films>(*this);

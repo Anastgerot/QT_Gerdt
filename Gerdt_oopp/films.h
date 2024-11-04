@@ -36,8 +36,4 @@ public:
     double getRating() const { return rating; }
     std::string getDirector() const { return director; }
     bool isAvailable() const { return is_available; }
-
-    virtual void draw(QPainter &painter, int x, int y, const QVector<int>& columnWidth) const;
-
-    virtual QSize textBlockSize(QPainter &painter) const;
 };
