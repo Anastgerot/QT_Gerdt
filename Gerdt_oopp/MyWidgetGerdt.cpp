@@ -12,18 +12,19 @@ void MyWidgetGerdt::load(const QString& path) {
         try {
             boost::archive::binary_iarchive ar(in);
             ar >> filmList;
-            qDebug() << "Data loaded successfully, filmList size:" << filmList.size();
+            qDebug() << "Данные успешно загружены, размер filmList:" << filmList.size();
             update();
         } catch (const exception &e) {
-            qDebug() << "Error during deserialization:" << e.what();
+            qDebug() << "Ошибка при десериализации:" << e.what();
         }
     } else {
-        qDebug() << "Failed to open file for loading.";
+        qDebug() << "Не удалось открыть файл для загрузки.";
     }
 }
 
 void MyWidgetGerdt::clean() {
     filmList.clear();
+    setMinimumSize(0, 0);
     update();
 }
 
@@ -77,12 +78,12 @@ void MyWidgetGerdt::paintEvent(QPaintEvent* event) {
     QVector<int> columnWidths(columnCount, 100);
     for (int i = 0; i < columnCount; ++i) {
        for_each(tableData.begin(), tableData.end(), bind([&](const QStringList& row) {
-                          columnWidths[i] = max(columnWidths[i], painter.fontMetrics().horizontalAdvance(row[i]) + 20);
+                          columnWidths[i] = max(columnWidths[i], painter.fontMetrics().horizontalAdvance(row[i]) + 2*x);
                       }, placeholders::_1));
     }
 
-    int totalWidth = accumulate(columnWidths.begin(), columnWidths.end(), 0) + 20;
-    int totalHeight = tableData.size() * rowHeight + 20;
+    int totalWidth = accumulate(columnWidths.begin(), columnWidths.end(), 0) + 2*x;
+    int totalHeight = tableData.size() * rowHeight + 2*y;
 
     setMinimumSize(totalWidth, totalHeight);
     setGeometry(geometry().x(), geometry().y(), totalWidth, totalHeight);
@@ -106,7 +107,6 @@ void MyWidgetGerdt::paintEvent(QPaintEvent* event) {
                   }, placeholders::_1));
     painter.drawLine(10, 10 + tableData.size() * rowHeight, 10 + tableWidth, 10 + tableData.size() * rowHeight);
 
-    // Рисуем вертикальные линии сетки с использованием for_each и bind
     x = 10;
     for_each(columnWidths.begin(), columnWidths.end(), bind([&](int width) {
                       painter.drawLine(x, 10, x, y);

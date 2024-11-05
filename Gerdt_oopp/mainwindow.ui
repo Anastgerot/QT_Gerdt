@@ -982,6 +982,15 @@
         </disabled>
        </palette>
       </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarPolicy::ScrollBarAsNeeded</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarPolicy::ScrollBarAsNeeded</enum>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::SizeAdjustPolicy::AdjustIgnored</enum>
+      </property>
       <property name="widgetResizable">
        <bool>true</bool>
       </property>
@@ -993,14 +1002,14 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1200</width>
-         <height>1200</height>
+         <width>915</width>
+         <height>521</height>
         </rect>
        </property>
        <property name="minimumSize">
         <size>
-         <width>1200</width>
-         <height>1200</height>
+         <width>0</width>
+         <height>0</height>
         </size>
        </property>
       </widget>
