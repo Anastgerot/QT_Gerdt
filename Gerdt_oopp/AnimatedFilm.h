@@ -30,4 +30,8 @@ public:
 
     string getVoiceActors() const { return voice_actors; }
     string getAnimationStyle() const { return animation_style; }
+
+    void setVoiceActors(const std::string& voiceActors) {this->voice_actors = voiceActors;}
+
+    void setAnimationStyle(const std::string& animationStyle) {this->animation_style = animationStyle;}
 };

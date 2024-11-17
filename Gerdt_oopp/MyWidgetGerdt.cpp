@@ -22,6 +22,11 @@ void MyWidgetGerdt::load(const QString& path) {
     }
 }
 
+QString FilmToString(const std::shared_ptr<films>& film) {
+    return QString("%1")
+        .arg(QString::fromLocal8Bit(film->getTitle()));
+}
+
 void MyWidgetGerdt::clean() {
     filmList.clear();
     setMinimumSize(0, 0);
@@ -115,3 +120,5 @@ void MyWidgetGerdt::paintEvent(QPaintEvent* event) {
     painter.drawLine(x, 10, x, y);
 }
 }
+
+

@@ -11,6 +11,12 @@
 #include <QPainter>
 #include <algorithm>
 #include <functional>
+#include <QCloseEvent>
+#include <QMessageBox>
+#include <QDate>
+#include <QListWidgetItem>
+#include <QFileDialog>
+#include <sstream>
 
 #include <boost/serialization/base_object.hpp>
 #include <boost/serialization/export.hpp>

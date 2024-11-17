@@ -1034,7 +1034,14 @@
     <addaction name="actionSave"/>
     <addaction name="actionClean"/>
    </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="actionEditFilms"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
   </widget>
   <action name="actionOpen">
    <property name="text">
@@ -1049,6 +1056,11 @@
   <action name="actionClean">
    <property name="text">
     <string>Clean</string>
+   </property>
+  </action>
+  <action name="actionEditFilms">
+   <property name="text">
+    <string>EditFilms</string>
    </property>
   </action>
  </widget>

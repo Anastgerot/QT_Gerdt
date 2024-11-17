@@ -6,14 +6,13 @@
 
 class films {
     friend class boost::serialization::access;
-
 protected:
-    std::string title;
+    string title;
     int year;
-    std::string genre;
+    string genre;
     double rating;
-    std::string country;
-    std::string director;
+    string country;
+    string director;
     bool is_available;
 
     template<class Archive>
@@ -30,10 +29,25 @@ protected:
 public:
     virtual ~films() = default;
 
-    std::string getTitle() const { return title; }
+    string getTitle() const { return title; }
     int getYear() const { return year; }
-    std::string getGenre() const { return genre; }
+    string getGenre() const { return genre; }
     double getRating() const { return rating; }
-    std::string getDirector() const { return director; }
+    string getDirector() const { return director; }
     bool isAvailable() const { return is_available; }
+
+    void setTitle(const string& title) {this->title = title;}
+
+    void setYear(int year) {this->year = year;}
+
+    void setGenre(const string& genre) {this->genre = genre;}
+
+    void setRating(int rating) {this->rating = rating;}
+
+    void setDirector(const string& director) {this->director = director;}
+
+    void setAvailable(bool available) { this->is_available = available; }
+
+
+
 };

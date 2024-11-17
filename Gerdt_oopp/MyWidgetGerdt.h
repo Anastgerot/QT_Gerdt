@@ -10,6 +10,7 @@ class MyWidgetGerdt : public QWidget {
 public:
     vector<shared_ptr<films>> filmList;
     vector<shared_ptr<films>> getfilmList() const { return filmList; }
+    bool showLabels = true;
     explicit MyWidgetGerdt(QWidget *parent = nullptr);
     void load(const QString& path);
     void clean();
