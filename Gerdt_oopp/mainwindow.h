@@ -4,6 +4,7 @@
 #include "films.h"
 #include "AnimatedFilm.h"
 #include "MyWidgetGerdt.h"
+#include "pch.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

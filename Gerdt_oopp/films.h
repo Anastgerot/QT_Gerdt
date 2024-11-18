@@ -27,12 +27,14 @@ protected:
     }
 
 public:
+
     virtual ~films() = default;
 
     string getTitle() const { return title; }
     int getYear() const { return year; }
     string getGenre() const { return genre; }
     double getRating() const { return rating; }
+    string getCountry() const { return country; }
     string getDirector() const { return director; }
     bool isAvailable() const { return is_available; }
 
@@ -43,6 +45,8 @@ public:
     void setGenre(const string& genre) {this->genre = genre;}
 
     void setRating(int rating) {this->rating = rating;}
+
+    void setCountry(const string& country) {this->country = country;}
 
     void setDirector(const string& director) {this->director = director;}
 

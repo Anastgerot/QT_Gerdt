@@ -11,6 +11,7 @@ protected:
     string animation_style = "";
 
 public:
+
     BOOST_SERIALIZATION_SPLIT_MEMBER()
     virtual ~AnimatedFilm() = default;
 

@@ -7,241 +7,43 @@
     <x>0</x>
     <y>0</y>
     <width>596</width>
-    <height>501</height>
+    <height>544</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QLabel" name="label_4">
+  <widget class="QPushButton" name="pushButton_save">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>190</y>
-     <width>111</width>
-     <height>31</height>
+     <x>160</x>
+     <y>500</y>
+     <width>93</width>
+     <height>29</height>
     </rect>
-   </property>
-   <property name="layoutDirection">
-    <enum>Qt::LayoutDirection::LeftToRight</enum>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font: 11pt &quot;Segoe UI&quot;;</string>
    </property>
    <property name="text">
-    <string>Рейтинг</string>
-   </property>
-   <property name="textFormat">
-    <enum>Qt::TextFormat::AutoText</enum>
+    <string>Сохранить</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_5">
+  <widget class="QPushButton" name="pushButton_cancel">
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>240</y>
-     <width>171</width>
-     <height>31</height>
+     <x>310</x>
+     <y>500</y>
+     <width>93</width>
+     <height>29</height>
     </rect>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="textEdit_6">
-   <property name="geometry">
-    <rect>
-     <x>300</x>
-     <y>290</y>
-     <width>171</width>
-     <height>31</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
-     <y>90</y>
-     <width>111</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="layoutDirection">
-    <enum>Qt::LayoutDirection::LeftToRight</enum>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font: 11pt &quot;Segoe UI&quot;;</string>
    </property>
    <property name="text">
-    <string>Год</string>
-   </property>
-   <property name="textFormat">
-    <enum>Qt::TextFormat::AutoText</enum>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_7">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
-     <y>340</y>
-     <width>131</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="layoutDirection">
-    <enum>Qt::LayoutDirection::LeftToRight</enum>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font: 11pt &quot;Segoe UI&quot;;</string>
-   </property>
-   <property name="text">
-    <string>Актеры озвучки</string>
-   </property>
-   <property name="textFormat">
-    <enum>Qt::TextFormat::AutoText</enum>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_5">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
-     <y>240</y>
-     <width>111</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="layoutDirection">
-    <enum>Qt::LayoutDirection::LeftToRight</enum>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font: 11pt &quot;Segoe UI&quot;;</string>
-   </property>
-   <property name="text">
-    <string>Режиссер</string>
-   </property>
-   <property name="textFormat">
-    <enum>Qt::TextFormat::AutoText</enum>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_8">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
-     <y>390</y>
-     <width>141</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="layoutDirection">
-    <enum>Qt::LayoutDirection::LeftToRight</enum>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font: 11pt &quot;Segoe UI&quot;;</string>
-   </property>
-   <property name="text">
-    <string>Стиль Анимации</string>
-   </property>
-   <property name="textFormat">
-    <enum>Qt::TextFormat::AutoText</enum>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_3">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
-     <y>140</y>
-     <width>111</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="layoutDirection">
-    <enum>Qt::LayoutDirection::LeftToRight</enum>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font: 11pt &quot;Segoe UI&quot;;</string>
-   </property>
-   <property name="text">
-    <string>Жанр</string>
-   </property>
-   <property name="textFormat">
-    <enum>Qt::TextFormat::AutoText</enum>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="textEdit_8">
-   <property name="geometry">
-    <rect>
-     <x>300</x>
-     <y>390</y>
-     <width>171</width>
-     <height>31</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="textEdit_3">
-   <property name="geometry">
-    <rect>
-     <x>300</x>
-     <y>140</y>
-     <width>171</width>
-     <height>31</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="textEdit_7">
-   <property name="geometry">
-    <rect>
-     <x>300</x>
-     <y>340</y>
-     <width>171</width>
-     <height>31</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_6">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
-     <y>290</y>
-     <width>111</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="layoutDirection">
-    <enum>Qt::LayoutDirection::LeftToRight</enum>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font: 11pt &quot;Segoe UI&quot;;</string>
-   </property>
-   <property name="text">
-    <string>В прокате?</string>
-   </property>
-   <property name="textFormat">
-    <enum>Qt::TextFormat::AutoText</enum>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="textEdit_4">
-   <property name="geometry">
-    <rect>
-     <x>300</x>
-     <y>190</y>
-     <width>171</width>
-     <height>31</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="textEdit_2">
-   <property name="geometry">
-    <rect>
-     <x>300</x>
-     <y>90</y>
-     <width>171</width>
-     <height>31</height>
-    </rect>
+    <string>Отмена</string>
    </property>
   </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
      <x>130</x>
-     <y>40</y>
+     <y>30</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -259,40 +61,286 @@
     <enum>Qt::TextFormat::AutoText</enum>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit">
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>280</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LayoutDirection::LeftToRight</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 11pt &quot;Segoe UI&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Режиссер</string>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::TextFormat::AutoText</enum>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="textEdit_5">
    <property name="geometry">
     <rect>
      <x>300</x>
-     <y>40</y>
+     <y>280</y>
      <width>171</width>
      <height>31</height>
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_save">
+  <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>450</y>
-     <width>93</width>
-     <height>29</height>
+     <x>130</x>
+     <y>80</y>
+     <width>111</width>
+     <height>31</height>
     </rect>
    </property>
+   <property name="layoutDirection">
+    <enum>Qt::LayoutDirection::LeftToRight</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 11pt &quot;Segoe UI&quot;;</string>
+   </property>
    <property name="text">
-    <string>Сохранить</string>
+    <string>Год</string>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::TextFormat::AutoText</enum>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_cancel">
+  <widget class="QTextEdit" name="textEdit_4">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>450</y>
-     <width>93</width>
-     <height>29</height>
+     <x>300</x>
+     <y>180</y>
+     <width>171</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>380</y>
+     <width>131</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LayoutDirection::LeftToRight</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 11pt &quot;Segoe UI&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Актеры озвучки</string>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::TextFormat::AutoText</enum>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="textEdit_7">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>380</y>
+     <width>171</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>130</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LayoutDirection::LeftToRight</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 11pt &quot;Segoe UI&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Жанр</string>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::TextFormat::AutoText</enum>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="textEdit_2">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>80</y>
+     <width>171</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>330</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LayoutDirection::LeftToRight</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 11pt &quot;Segoe UI&quot;;</string>
+   </property>
+   <property name="text">
+    <string>В прокате?</string>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::TextFormat::AutoText</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>430</y>
+     <width>141</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LayoutDirection::LeftToRight</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 11pt &quot;Segoe UI&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Стиль Анимации</string>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::TextFormat::AutoText</enum>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="textEdit_country">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>230</y>
+     <width>171</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>180</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LayoutDirection::LeftToRight</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 11pt &quot;Segoe UI&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Рейтинг</string>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::TextFormat::AutoText</enum>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="textEdit_8">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>430</y>
+     <width>171</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="textEdit">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>30</y>
+     <width>171</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_9">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>230</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LayoutDirection::LeftToRight</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 11pt &quot;Segoe UI&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Страна</string>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::TextFormat::AutoText</enum>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="textEdit_3">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>130</y>
+     <width>171</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkbox_no">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>330</y>
+     <width>91</width>
+     <height>24</height>
     </rect>
    </property>
    <property name="text">
-    <string>Отмена</string>
+    <string>Нет</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkbox_yes">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>330</y>
+     <width>51</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Да</string>
    </property>
   </widget>
  </widget>

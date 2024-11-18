@@ -1,23 +1,24 @@
 #include "EditDialog.h"
 #include "ui_EditDialog.h"
 #include "EditFilmDialog.h"
+#include "AddDialog.h"
+#include "MyWidgetGerdt.h"
 
 extern QString FilmToString(const shared_ptr<films>& film);
 
 
-EditDialog::EditDialog(QWidget *parent, const vector<shared_ptr<films>> filmList)
+EditDialog::EditDialog(QWidget *parent, vector<shared_ptr<films>>& filmList)
     : QDialog(parent)
     , filmList(filmList)
     , ui(new Ui::EditDialog)
 {
     ui->setupUi(this);
-    for(auto namefilm: filmList)
+    for (auto namefilm : filmList)
     {
         ui->listWidget->addItem(FilmToString(namefilm));
     }
     connect(ui->listWidget, &QListWidget::currentRowChanged, this, &EditDialog::on_listWidget_currentRowChanged);
 }
-
 EditDialog::~EditDialog()
 {
     delete ui;
@@ -31,9 +32,11 @@ void EditDialog::on_listWidget_currentRowChanged(int currentRow) {
         ui->textEdit_3->clear();
         ui->textEdit_4->clear();
         ui->textEdit_5->clear();
-        ui->textEdit_6->clear();
+        ui->checkbox_yes->setChecked(false);
+        ui->checkbox_no->setChecked(false);
         ui->textEdit_7->clear();
         ui->textEdit_8->clear();
+        ui->textEdit_country->clear();
         ui->textEdit_7->setVisible(false);
         ui->textEdit_8->setVisible(false);
         ui->label_7->setVisible(false);
@@ -48,9 +51,13 @@ void EditDialog::on_listWidget_currentRowChanged(int currentRow) {
         ui->textEdit_2->setText(QString::number(film->getYear()));
         ui->textEdit_3->setText(QString::fromLocal8Bit(film->getGenre()));
         ui->textEdit_4->setText(QString::number(film->getRating()));
+        ui->textEdit_country->setText(QString::fromLocal8Bit(film->getCountry()));
         ui->textEdit_5->setText(QString::fromLocal8Bit(film->getDirector()));
-        ui->textEdit_6->setText(film->isAvailable() ? "Да" : "Нет");
 
+        // Устанавливаем состояние флажков
+        bool isAvailable = film->isAvailable();
+        ui->checkbox_yes->setChecked(isAvailable);
+        ui->checkbox_no->setChecked(!isAvailable);
 
         // Проверяем, является ли фильм анимационным
         auto* animatedFilm = dynamic_cast<AnimatedFilm*>(film.get());
@@ -76,9 +83,11 @@ void EditDialog::on_listWidget_currentRowChanged(int currentRow) {
         ui->textEdit_3->setReadOnly(true);
         ui->textEdit_4->setReadOnly(true);
         ui->textEdit_5->setReadOnly(true);
-        ui->textEdit_6->setReadOnly(true);
         ui->textEdit_7->setReadOnly(true);
         ui->textEdit_8->setReadOnly(true);
+        ui->textEdit_country->setReadOnly(true);
+        ui->checkbox_yes->setEnabled(false);
+        ui->checkbox_no->setEnabled(false);
     }
 }
 
@@ -105,6 +114,39 @@ void EditDialog::on_pushButton_clicked() {
     }
 }
 
+void EditDialog::on_pushButton_add_clicked() {
+    AddDialog addDialog(this);
+
+    if (addDialog.exec() == QDialog::Accepted) {
+
+        auto newFilm = addDialog.getNewFilm();
+
+        if (newFilm) {
+            filmList.push_back(newFilm);
+            ui->listWidget->addItem(FilmToString(newFilm));
+
+        } else {
+            qDebug() << "Ошибка: Фильм не был создан!";
+        }
+    } else {
+        qDebug() << "Добавление фильма отменено.";
+    }
+}
+
+void EditDialog::on_pushButton_delete_clicked() {
+    int currentRow = ui->listWidget->currentRow();
+    if (currentRow < 0 || currentRow >= filmList.size()) {
+        return;
+    }
+
+    filmList.erase(filmList.begin() + currentRow);
+    delete ui->listWidget->takeItem(currentRow);
+
+    qDebug() << "Данные удалены. Осталось фильмов:" << filmList.size();
+
+    on_listWidget_currentRowChanged(ui->listWidget->currentRow());
+
+}
 
 
 void EditDialog::on_pushButton_cancel_clicked() {
@@ -112,6 +154,7 @@ void EditDialog::on_pushButton_cancel_clicked() {
 }
 
 void EditDialog::on_pushButton_save_clicked() {
+    emit filmListChanged(filmList);
     accept();
 }
 
@@ -135,22 +178,4 @@ void EditDialog::closeEvent(QCloseEvent *event)
     }
 }
 
-
-void EditDialog::on_pushButton_delete_clicked() {
-    int currentRow = ui->listWidget->currentRow();
-    if (currentRow < 0 || currentRow >= static_cast<int>(filmList.size())) {
-        return;
-    }
-
-    filmList.erase(filmList.begin() + currentRow);
-    delete ui->listWidget->takeItem(currentRow);
-
-    // Обновляем текущий элемент
-    on_listWidget_currentRowChanged(ui->listWidget->currentRow());
-}
-
-void EditDialog::on_pushButton_add_clicked()
-{
-
-}
 

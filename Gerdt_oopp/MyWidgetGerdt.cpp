@@ -20,6 +20,7 @@ void MyWidgetGerdt::load(const QString& path) {
     } else {
         qDebug() << "Не удалось открыть файл для загрузки.";
     }
+
 }
 
 QString FilmToString(const std::shared_ptr<films>& film) {
@@ -45,6 +46,7 @@ void MyWidgetGerdt::paintEvent(QPaintEvent* event) {
         QString::fromUtf8("Год"),
         QString::fromUtf8("Жанр"),
         QString::fromUtf8("Рейтинг"),
+        QString::fromUtf8("Страна"),
         QString::fromUtf8("Режиссёр"),
         QString::fromUtf8("В прокате?"),
         QString::fromUtf8("Актеры озвучки"),
@@ -64,6 +66,7 @@ void MyWidgetGerdt::paintEvent(QPaintEvent* event) {
                           << QString::number(animatedFilm->getYear())
                           << QString::fromLocal8Bit(animatedFilm->getGenre())
                           << QString::number(animatedFilm->getRating())
+                          << QString::fromLocal8Bit(animatedFilm->getCountry())
                           << QString::fromLocal8Bit(animatedFilm->getDirector())
                           << (animatedFilm->isAvailable() ? QString::fromUtf8("Да") : QString::fromUtf8("Нет"))
                           << QString::fromLocal8Bit(animatedFilm->getVoiceActors())
@@ -73,6 +76,7 @@ void MyWidgetGerdt::paintEvent(QPaintEvent* event) {
                           << QString::number(film->getYear())
                           << QString::fromLocal8Bit(film->getGenre())
                           << QString::number(film->getRating())
+                          << QString::fromLocal8Bit(film->getCountry())
                           << QString::fromLocal8Bit(film->getDirector())
                           << (film->isAvailable() ? QString::fromUtf8("Да") : QString::fromUtf8("Нет"))
                           << "-" << "-";

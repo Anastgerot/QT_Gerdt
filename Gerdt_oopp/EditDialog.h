@@ -1,6 +1,5 @@
 #pragma once
 
-#include <QDialog>
 #include "pch.h"
 #include "films.h"
 #include "AnimatedFilm.h"
@@ -15,7 +14,7 @@ class EditDialog : public QDialog
 
 public:
     vector<shared_ptr<films>> filmList;
-    explicit EditDialog(QWidget *parent, vector<shared_ptr<films>> filmList);
+    explicit EditDialog(QWidget *parent, std::vector<std::shared_ptr<films>>& filmList);
     ~EditDialog();
 
 
@@ -29,4 +28,6 @@ private slots:
     void on_pushButton_delete_clicked();
     void on_listWidget_currentRowChanged(int currentRow);
     void on_pushButton_add_clicked();
+signals:
+    void filmListChanged(const vector<shared_ptr<films>>& updatedFilmList);
 };

@@ -13,8 +13,11 @@ EditFilmDialog::EditFilmDialog(QWidget *parent, shared_ptr<films> film)
         ui->textEdit_2->setText(QString::number(film->getYear()));
         ui->textEdit_3->setText(QString::fromLocal8Bit(film->getGenre()));
         ui->textEdit_4->setText(QString::number(film->getRating()));
+        ui->textEdit_country->setText(QString::fromLocal8Bit(film->getCountry()));
         ui->textEdit_5->setText(QString::fromLocal8Bit(film->getDirector()));
-        ui->textEdit_6->setText(film->isAvailable() ? "Да" : "Нет");
+        bool isAvailable = film->isAvailable();
+        ui->checkbox_yes->setChecked(isAvailable);
+        ui->checkbox_no->setChecked(!isAvailable);
 
         auto* animatedFilm = dynamic_cast<AnimatedFilm*>(film.get());
         if (animatedFilm) {
@@ -46,9 +49,9 @@ void EditFilmDialog::on_pushButton_save_clicked()
 
         bool yearOk;
         int year = ui->textEdit_2->toPlainText().toInt(&yearOk);
-        if (!yearOk || year < 1800 || year > QDate::currentDate().year()) {
+        if (!yearOk || year < 1895 || year > QDate::currentDate().year()) {
             QMessageBox::warning(this, "Ошибка ввода",
-                                 "Год выпуска должен быть числом в диапазоне от 1800 до текущего года.");
+                                 "Год выпуска должен быть в диапазоне от 1895 до текущего года.");
             return;
         }
 
@@ -65,10 +68,22 @@ void EditFilmDialog::on_pushButton_save_clicked()
         film->setYear(year);
         film->setGenre(ui->textEdit_3->toPlainText().toLocal8Bit().constData());
         film->setRating(rating);
+        film->setCountry(ui->textEdit_country->toPlainText().toLocal8Bit().constData());
         film->setDirector(ui->textEdit_5->toPlainText().toLocal8Bit().constData());
 
-        bool isAvailable = (ui->textEdit_6->toPlainText().toLower() == "да");
-        film->setAvailable(isAvailable);
+        if (ui->checkbox_yes->isChecked() && ui->checkbox_no->isChecked()) {
+            QMessageBox::warning(this, "Ошибка ввода",
+                                 "Нельзя выбирать одновременно оба варианта 'Да' и 'Нет'.");
+            return;
+        } else if (ui->checkbox_yes->isChecked()) {
+            film->setAvailable(true);
+        } else if (ui->checkbox_no->isChecked()) {
+            film->setAvailable(false);
+        } else {
+            QMessageBox::warning(this, "Ошибка ввода",
+                                 "Выберите доступность: 'Да' или 'Нет'.");
+            return;
+        }
 
         auto* animatedFilm = dynamic_cast<AnimatedFilm*>(film.get());
         if (animatedFilm) {

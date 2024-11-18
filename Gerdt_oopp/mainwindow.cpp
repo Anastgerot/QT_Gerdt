@@ -44,7 +44,7 @@ void MainWindow::on_actionSave_triggered() {
 }
 
 template<class T>
-void clone(T& src, T& trg)
+void clone(const T& src, T& trg)
 {
     stringstream stream;
     boost::archive::binary_oarchive out(stream);
@@ -56,20 +56,21 @@ void clone(T& src, T& trg)
 
 void MainWindow::on_actionEditFilms_triggered()
 {
-    // Клонируем filmList в новый вектор для редактирования в диалоге
     vector<shared_ptr<films>> clonedFilmList;
     clone(ui->myWidgetGerdt->filmList, clonedFilmList);
 
-    // Передаем клонированный список фильмов в конструктор EditDialog
     EditDialog dlg(this, clonedFilmList);
 
-    // Если диалог завершен успешно
-    if (dlg.exec() == QDialog::Accepted)
-    {
-        // Клонируем измененный список обратно в filmList
-        clone(clonedFilmList, ui->myWidgetGerdt->filmList);
+
+    connect(&dlg, &EditDialog::filmListChanged, this, [this](const vector<shared_ptr<films>>& updatedFilmList){
+        clone(updatedFilmList, ui->myWidgetGerdt->filmList);
         ui->myWidgetGerdt->update();
-    }
+        qDebug() << "Число фильмов:" << ui->myWidgetGerdt->filmList.size();
+    });
+
+    if (dlg.exec() == QDialog::Accepted) {}
+
 }
+
 
 

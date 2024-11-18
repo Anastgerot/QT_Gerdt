@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>597</width>
-    <height>618</height>
+    <height>709</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -39,7 +39,7 @@
    <property name="geometry">
     <rect>
      <x>130</x>
-     <y>350</y>
+     <y>400</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -77,16 +77,6 @@
     </rect>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_6">
-   <property name="geometry">
-    <rect>
-     <x>300</x>
-     <y>350</y>
-     <width>171</width>
-     <height>31</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
@@ -113,7 +103,7 @@
    <property name="geometry">
     <rect>
      <x>300</x>
-     <y>400</y>
+     <y>450</y>
      <width>171</width>
      <height>31</height>
     </rect>
@@ -123,7 +113,7 @@
    <property name="geometry">
     <rect>
      <x>130</x>
-     <y>400</y>
+     <y>450</y>
      <width>131</width>
      <height>31</height>
     </rect>
@@ -165,7 +155,7 @@
    <property name="geometry">
     <rect>
      <x>130</x>
-     <y>450</y>
+     <y>500</y>
      <width>141</width>
      <height>31</height>
     </rect>
@@ -187,7 +177,7 @@
    <property name="geometry">
     <rect>
      <x>300</x>
-     <y>450</y>
+     <y>500</y>
      <width>171</width>
      <height>31</height>
     </rect>
@@ -197,7 +187,7 @@
    <property name="geometry">
     <rect>
      <x>300</x>
-     <y>300</y>
+     <y>350</y>
      <width>171</width>
      <height>31</height>
     </rect>
@@ -229,7 +219,7 @@
    <property name="geometry">
     <rect>
      <x>130</x>
-     <y>300</y>
+     <y>350</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -285,7 +275,7 @@
     <string>Базовый класс</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton_proizvod">
+  <widget class="QRadioButton" name="radioButton_child">
    <property name="geometry">
     <rect>
      <x>340</x>
@@ -305,7 +295,7 @@
    <property name="geometry">
     <rect>
      <x>140</x>
-     <y>550</y>
+     <y>630</y>
      <width>93</width>
      <height>29</height>
     </rect>
@@ -318,13 +308,71 @@
    <property name="geometry">
     <rect>
      <x>360</x>
-     <y>550</y>
+     <y>630</y>
      <width>93</width>
      <height>29</height>
     </rect>
    </property>
    <property name="text">
     <string>Отмена</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="textEdit_country">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>300</y>
+     <width>171</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_9">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>300</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LayoutDirection::LeftToRight</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 11pt &quot;Segoe UI&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Страна</string>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::TextFormat::AutoText</enum>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkbox_yes">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>400</y>
+     <width>51</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Да</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkbox_no">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>400</y>
+     <width>91</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Нет</string>
    </property>
   </widget>
  </widget>

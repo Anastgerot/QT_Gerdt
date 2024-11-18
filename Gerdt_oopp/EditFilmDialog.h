@@ -1,6 +1,5 @@
 #pragma once
 
-#include <QDialog>
 #include "pch.h"
 #include "films.h"
 #include "AnimatedFilm.h"

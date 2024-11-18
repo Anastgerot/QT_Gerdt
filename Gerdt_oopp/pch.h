@@ -17,6 +17,7 @@
 #include <QListWidgetItem>
 #include <QFileDialog>
 #include <sstream>
+#include <QDialog>
 
 #include <boost/serialization/base_object.hpp>
 #include <boost/serialization/export.hpp>
