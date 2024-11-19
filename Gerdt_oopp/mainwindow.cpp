@@ -65,7 +65,6 @@ void MainWindow::on_actionEditFilms_triggered()
     connect(&dlg, &EditDialog::filmListChanged, this, [this](const vector<shared_ptr<films>>& updatedFilmList){
         clone(updatedFilmList, ui->myWidgetGerdt->filmList);
         ui->myWidgetGerdt->update();
-        qDebug() << "Число фильмов:" << ui->myWidgetGerdt->filmList.size();
     });
 
     if (dlg.exec() == QDialog::Accepted) {}

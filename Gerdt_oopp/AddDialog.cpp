@@ -24,7 +24,6 @@ void AddDialog::on_pushButton_save_clicked() {
     QString country = ui->textEdit_country->toPlainText().trimmed();
     QString director = ui->textEdit_5->toPlainText().trimmed();
 
-    // Проверяем корректность выбора доступности
     bool isYesChecked = ui->checkbox_yes->isChecked();
     bool isNoChecked = ui->checkbox_no->isChecked();
 
@@ -48,12 +47,11 @@ void AddDialog::on_pushButton_save_clicked() {
         QMessageBox::warning(this, "Ошибка ввода", "Год выпуска должен быть в диапазоне от 1895 до текущего года.");
         return;
     }
-    if (rating < 0 || rating > 10) {
+    if (!rating || rating < 0 || rating > 10) {
         QMessageBox::warning(this, "Ошибка ввода", "Рейтинг должен быть в диапазоне от 0 до 10.");
         return;
     }
 
-    // Создание объекта фильма
     if (ui->radioButton_child->isChecked()) {
         auto childFilm = make_shared<AnimatedFilm>();
         childFilm->setVoiceActors(ui->textEdit_7->toPlainText().toLocal8Bit().constData());

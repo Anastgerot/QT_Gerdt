@@ -46,7 +46,7 @@ void EditDialog::on_listWidget_currentRowChanged(int currentRow) {
 
     const auto& film = filmList[currentRow];
     if (film) {
-        // Обновляем поля информации о фильме
+
         ui->textEdit->setText(QString::fromLocal8Bit(film->getTitle()));
         ui->textEdit_2->setText(QString::number(film->getYear()));
         ui->textEdit_3->setText(QString::fromLocal8Bit(film->getGenre()));
@@ -54,24 +54,20 @@ void EditDialog::on_listWidget_currentRowChanged(int currentRow) {
         ui->textEdit_country->setText(QString::fromLocal8Bit(film->getCountry()));
         ui->textEdit_5->setText(QString::fromLocal8Bit(film->getDirector()));
 
-        // Устанавливаем состояние флажков
         bool isAvailable = film->isAvailable();
         ui->checkbox_yes->setChecked(isAvailable);
         ui->checkbox_no->setChecked(!isAvailable);
 
-        // Проверяем, является ли фильм анимационным
         auto* animatedFilm = dynamic_cast<AnimatedFilm*>(film.get());
         if (animatedFilm) {
             ui->textEdit_7->setText(QString::fromLocal8Bit(animatedFilm->getVoiceActors()));
             ui->textEdit_8->setText(QString::fromLocal8Bit(animatedFilm->getAnimationStyle()));
 
-            // Показываем элементы для анимационного фильма
             ui->textEdit_7->setVisible(true);
             ui->textEdit_8->setVisible(true);
             ui->label_7->setVisible(true);
             ui->label_8->setVisible(true);
         } else {
-            // Скрываем элементы, если фильм не анимационный
             ui->textEdit_7->setVisible(false);
             ui->textEdit_8->setVisible(false);
             ui->label_7->setVisible(false);
@@ -102,11 +98,9 @@ void EditDialog::on_pushButton_clicked() {
     auto film = filmList[currentRow];
     if (film) {
 
-        // Создаем диалог редактирования фильма
         EditFilmDialog editFilmDialog(this, film);
         if (editFilmDialog.exec() == QDialog::Accepted) {
 
-            // Обновление текста элемента в списке
             ui->listWidget->item(currentRow)->setText(FilmToString(film));
 
             on_listWidget_currentRowChanged(currentRow);

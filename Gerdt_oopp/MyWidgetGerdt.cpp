@@ -58,71 +58,70 @@ void MyWidgetGerdt::paintEvent(QPaintEvent* event) {
     tableData.append(headers);
 
     if (!filmList.empty()) {
-    // Заполняем таблицу данными из filmList с использованием for_each и bind
-    for_each(filmList.begin(), filmList.end(), bind([&](const auto& film) {
-                      QStringList values;
-                      if (auto animatedFilm = dynamic_cast<AnimatedFilm*>(film.get())) {
-                          values << QString::fromLocal8Bit(animatedFilm->getTitle())
-                          << QString::number(animatedFilm->getYear())
-                          << QString::fromLocal8Bit(animatedFilm->getGenre())
-                          << QString::number(animatedFilm->getRating())
-                          << QString::fromLocal8Bit(animatedFilm->getCountry())
-                          << QString::fromLocal8Bit(animatedFilm->getDirector())
-                          << (animatedFilm->isAvailable() ? QString::fromUtf8("Да") : QString::fromUtf8("Нет"))
-                          << QString::fromLocal8Bit(animatedFilm->getVoiceActors())
-                          << QString::fromLocal8Bit(animatedFilm->getAnimationStyle());
-                      } else {
-                          values << QString::fromLocal8Bit(film->getTitle())
-                          << QString::number(film->getYear())
-                          << QString::fromLocal8Bit(film->getGenre())
-                          << QString::number(film->getRating())
-                          << QString::fromLocal8Bit(film->getCountry())
-                          << QString::fromLocal8Bit(film->getDirector())
-                          << (film->isAvailable() ? QString::fromUtf8("Да") : QString::fromUtf8("Нет"))
-                          << "-" << "-";
-                      }
-                      tableData.append(values);
-                  }, placeholders::_1));
+        for_each(filmList.begin(), filmList.end(), [&](const auto& film) {
+            QStringList values;
+            if (auto animatedFilm = dynamic_cast<AnimatedFilm*>(film.get())) {
+                values << QString::fromLocal8Bit(animatedFilm->getTitle())
+                << QString::number(animatedFilm->getYear())
+                << QString::fromLocal8Bit(animatedFilm->getGenre())
+                << QString::number(animatedFilm->getRating())
+                << QString::fromLocal8Bit(animatedFilm->getCountry())
+                << QString::fromLocal8Bit(animatedFilm->getDirector())
+                << (animatedFilm->isAvailable() ? QString::fromUtf8("Да") : QString::fromUtf8("Нет"))
+                << QString::fromLocal8Bit(animatedFilm->getVoiceActors())
+                << QString::fromLocal8Bit(animatedFilm->getAnimationStyle());
+            } else {
+                values << QString::fromLocal8Bit(film->getTitle())
+                << QString::number(film->getYear())
+                << QString::fromLocal8Bit(film->getGenre())
+                << QString::number(film->getRating())
+                << QString::fromLocal8Bit(film->getCountry())
+                << QString::fromLocal8Bit(film->getDirector())
+                << (film->isAvailable() ? QString::fromUtf8("Да") : QString::fromUtf8("Нет"))
+                << "-" << "-";
+            }
+            tableData.append(values);
+        });
 
-    QVector<int> columnWidths(columnCount, 100);
-    for (int i = 0; i < columnCount; ++i) {
-       for_each(tableData.begin(), tableData.end(), bind([&](const QStringList& row) {
-                          columnWidths[i] = max(columnWidths[i], painter.fontMetrics().horizontalAdvance(row[i]) + 2*x);
-                      }, placeholders::_1));
+        QVector<int> columnWidths(columnCount, 100);
+        for (int i = 0; i < columnCount; ++i) {
+            for_each(tableData.begin(), tableData.end(), [&](const QStringList& row) {
+                columnWidths[i] = max(columnWidths[i], painter.fontMetrics().horizontalAdvance(row[i]) + 2 * x);
+            });
+        }
+
+        int totalWidth = accumulate(columnWidths.begin(), columnWidths.end(), 0) + 2 * x;
+        int totalHeight = tableData.size() * rowHeight + 2 * y;
+
+        setMinimumSize(totalWidth, totalHeight);
+        setGeometry(geometry().x(), geometry().y(), totalWidth, totalHeight);
+
+        for_each(tableData.begin(), tableData.end(), [&](const QStringList& row) {
+            x = 10;
+            for (int i = 0; i < row.size(); ++i) {
+                QString text = row[i];
+                painter.drawText(x, y, columnWidths[i], rowHeight, Qt::AlignCenter, text);
+                x += columnWidths[i];
+            }
+            y += rowHeight;
+        });
+
+        // Горизонтальные линии
+        int tableWidth = accumulate(columnWidths.begin(), columnWidths.end(), 0);
+        int rowIndex = 0;
+        for_each(tableData.begin(), tableData.end(), [&](const QStringList&) {
+            painter.drawLine(10, 10 + rowIndex * rowHeight, 10 + tableWidth, 10 + rowIndex * rowHeight);
+            ++rowIndex;
+        });
+        painter.drawLine(10, 10 + tableData.size() * rowHeight, 10 + tableWidth, 10 + tableData.size() * rowHeight);
+
+        // Вертикальные линии
+        x = 10;
+        for_each(columnWidths.begin(), columnWidths.end(), [&](int width) {
+            painter.drawLine(x, 10, x, y);
+            x += width;
+        });
+        painter.drawLine(x, 10, x, y);
     }
-
-    int totalWidth = accumulate(columnWidths.begin(), columnWidths.end(), 0) + 2*x;
-    int totalHeight = tableData.size() * rowHeight + 2*y;
-
-    setMinimumSize(totalWidth, totalHeight);
-    setGeometry(geometry().x(), geometry().y(), totalWidth, totalHeight);
-
-    for_each(tableData.begin(), tableData.end(), bind([&](const QStringList& row) {
-                      x = 10;
-                      for (int i = 0; i < row.size(); ++i) {
-                          QString text = row[i];
-                          painter.drawText(x, y, columnWidths[i], rowHeight, Qt::AlignCenter, text);
-                          x += columnWidths[i];
-                      }
-                      y += rowHeight;
-                  }, placeholders::_1));
-
-
-    int tableWidth = accumulate(columnWidths.begin(), columnWidths.end(), 0);
-    int rowIndex = 0;
-    for_each(tableData.begin(), tableData.end(), bind([&](const QStringList&) {
-                      painter.drawLine(10, 10 + rowIndex * rowHeight, 10 + tableWidth, 10 + rowIndex * rowHeight);
-                      ++rowIndex;
-                  }, placeholders::_1));
-    painter.drawLine(10, 10 + tableData.size() * rowHeight, 10 + tableWidth, 10 + tableData.size() * rowHeight);
-
-    x = 10;
-    for_each(columnWidths.begin(), columnWidths.end(), bind([&](int width) {
-                      painter.drawLine(x, 10, x, y);
-                      x += width;
-                  }, placeholders::_1));
-    painter.drawLine(x, 10, x, y);
 }
-}
-
 
