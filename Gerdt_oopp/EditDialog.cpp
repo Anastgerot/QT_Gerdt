@@ -97,10 +97,9 @@ void EditDialog::on_pushButton_clicked() {
 
     auto film = filmList[currentRow];
     if (film) {
-
-        EditFilmDialog editFilmDialog(this, film);
-        if (editFilmDialog.exec() == QDialog::Accepted) {
-
+        AddDialog editDialog(this);
+        editDialog.setEditMode(film);
+        if (editDialog.exec() == QDialog::Accepted) {
             ui->listWidget->item(currentRow)->setText(FilmToString(film));
 
             on_listWidget_currentRowChanged(currentRow);

@@ -6,6 +6,8 @@ AddDialog::AddDialog(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::AddDialog)
     , newFilm(nullptr)
+    , editedFilm(nullptr)
+    , isEditMode(false)
 {
     ui->setupUi(this);
 
@@ -16,13 +18,47 @@ AddDialog::AddDialog(QWidget *parent)
     ui->radioButton_base->setChecked(true);
 }
 
+void AddDialog::setEditMode(shared_ptr<films> film) {
+    isEditMode = true;
+    editedFilm = film;
+
+    // Заполнение полей данными редактируемого фильма
+    if (film) {
+        ui->textEdit->setText(QString::fromLocal8Bit(film->getTitle()));
+        ui->textEdit_2->setText(QString::number(film->getYear()));
+        ui->textEdit_3->setText(QString::fromLocal8Bit(film->getGenre()));
+        ui->textEdit_4->setText(QString::number(film->getRating()));
+        ui->textEdit_country->setText(QString::fromLocal8Bit(film->getCountry()));
+        ui->textEdit_5->setText(QString::fromLocal8Bit(film->getDirector()));
+        ui->checkbox_yes->setChecked(film->isAvailable());
+        ui->checkbox_no->setChecked(!film->isAvailable());
+        ui->radioButton_child->setEnabled(false);
+        ui->radioButton_base->setEnabled(false);
+
+
+        auto* animatedFilm = dynamic_cast<AnimatedFilm*>(film.get());
+        if (animatedFilm) {
+            ui->radioButton_child->setChecked(true);
+            ui->textEdit_7->setText(QString::fromLocal8Bit(animatedFilm->getVoiceActors()));
+            ui->textEdit_8->setText(QString::fromLocal8Bit(animatedFilm->getAnimationStyle()));
+            on_radioButton_child_clicked();
+            ui->radioButton_base->setEnabled(false);
+        } else {
+            ui->radioButton_base->setChecked(true);
+            on_radioButton_base_clicked();
+        }
+    }
+}
+
 void AddDialog::on_pushButton_save_clicked() {
+    // Сохранение общих данных (как в текущей реализации)
     QString title = ui->textEdit->toPlainText().trimmed();
     int year = ui->textEdit_2->toPlainText().toInt();
     QString genre = ui->textEdit_3->toPlainText().trimmed();
     double rating = ui->textEdit_4->toPlainText().toDouble();
     QString country = ui->textEdit_country->toPlainText().trimmed();
     QString director = ui->textEdit_5->toPlainText().trimmed();
+    bool isAvailable = ui->checkbox_yes->isChecked();
 
     bool isYesChecked = ui->checkbox_yes->isChecked();
     bool isNoChecked = ui->checkbox_no->isChecked();
@@ -35,8 +71,6 @@ void AddDialog::on_pushButton_save_clicked() {
         QMessageBox::warning(this, "Ошибка ввода", "Выберите один из вариантов доступности: 'Да' или 'Нет'.");
         return;
     }
-
-    bool isAvailable = isYesChecked;
 
     // Проверка корректности других данных
     if (title.isEmpty()) {
@@ -52,26 +86,44 @@ void AddDialog::on_pushButton_save_clicked() {
         return;
     }
 
-    if (ui->radioButton_child->isChecked()) {
-        auto childFilm = make_shared<AnimatedFilm>();
-        childFilm->setVoiceActors(ui->textEdit_7->toPlainText().toLocal8Bit().constData());
-        childFilm->setAnimationStyle(ui->textEdit_8->toPlainText().toLocal8Bit().constData());
-        newFilm = childFilm;
+    if (isEditMode) {
+
+        editedFilm->setTitle(title.toLocal8Bit().constData());
+        editedFilm->setYear(year);
+        editedFilm->setGenre(genre.toLocal8Bit().constData());
+        editedFilm->setRating(rating);
+        editedFilm->setCountry(country.toLocal8Bit().constData());
+        editedFilm->setDirector(director.toLocal8Bit().constData());
+
+        auto* animatedFilm = dynamic_cast<AnimatedFilm*>(editedFilm.get());
+        if (animatedFilm && ui->radioButton_child->isChecked()) {
+            animatedFilm->setVoiceActors(ui->textEdit_7->toPlainText().toLocal8Bit().constData());
+            animatedFilm->setAnimationStyle(ui->textEdit_8->toPlainText().toLocal8Bit().constData());
+        }
     } else {
-        newFilm = make_shared<films>();
+
+        if (ui->radioButton_child->isChecked()) {
+            auto childFilm = make_shared<AnimatedFilm>();
+            childFilm->setVoiceActors(ui->textEdit_7->toPlainText().toLocal8Bit().constData());
+            childFilm->setAnimationStyle(ui->textEdit_8->toPlainText().toLocal8Bit().constData());
+            newFilm = childFilm;
+        } else {
+            newFilm = make_shared<films>();
+        }
+
+        newFilm->setTitle(title.toLocal8Bit().constData());
+        newFilm->setYear(year);
+        newFilm->setGenre(genre.toLocal8Bit().constData());
+        newFilm->setRating(rating);
+        newFilm->setCountry(country.toLocal8Bit().constData());
+        newFilm->setDirector(director.toLocal8Bit().constData());
+        newFilm->setAvailable(isAvailable);
     }
 
-    // Заполнение общих данных фильма
-    newFilm->setTitle(title.toLocal8Bit().constData());
-    newFilm->setYear(year);
-    newFilm->setGenre(genre.toLocal8Bit().constData());
-    newFilm->setRating(rating);
-    newFilm->setCountry(country.toLocal8Bit().constData());
-    newFilm->setDirector(director.toLocal8Bit().constData());
-    newFilm->setAvailable(isAvailable);
-
     accept();
+
 }
+
 
 shared_ptr<films> AddDialog::getNewFilm() const {
     if (result() == QDialog::Accepted && newFilm) {

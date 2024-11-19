@@ -1,10 +1,11 @@
+
 #include "EditFilmDialog.h"
-#include "ui_EditFilmDialog.h"
+#include "ui_AddDialog.h"
 
 EditFilmDialog::EditFilmDialog(QWidget *parent, shared_ptr<films> film)
     : QDialog(parent),
     film(film),
-    ui(new Ui::EditFilmDialog)
+    ui(Ui::AddDialog)
 {
     ui->setupUi(this);
 
@@ -120,4 +121,3 @@ void EditFilmDialog::closeEvent(QCloseEvent *event)
         event->ignore();
     }
 }
-

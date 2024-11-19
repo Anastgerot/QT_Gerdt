@@ -41,10 +41,11 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         films.h films.cpp
         EditDialog.h EditDialog.cpp
         EditDialog.ui
-        EditFilmDialog.ui
-        EditFilmDialog.h EditFilmDialog.cpp
+
+
         AddDialog.h AddDialog.cpp
         AddDialog.ui
+
 
 
     )

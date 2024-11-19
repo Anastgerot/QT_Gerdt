@@ -1,3 +1,4 @@
+
 #pragma once
 
 #include "pch.h"
@@ -22,6 +23,5 @@ private slots:
     void on_pushButton_save_clicked();
     void closeEvent(QCloseEvent *event);
 private:
-    Ui::EditFilmDialog *ui;
     shared_ptr<films> film;
 };
